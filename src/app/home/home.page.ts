@@ -20,7 +20,7 @@ export class HomePage {
       this.tasks = JSON.parse(taskJson);
     }
     if(taskJson != null){
-      this.tasksUrgentes = JSON.parse(taskJson);
+      this.tasksUrgentes = JSON.parse(taskUrgentesJson);
     }
   }
 
@@ -143,8 +143,10 @@ export class HomePage {
           handler: () => {
             if(task.urgencia === 's'){
               this.tasksUrgentes = this.tasksUrgentes.filter(taskArray=> task != taskArray);
+              this.updateLocalStorage();
             }else{
               this.tasks = this.tasks.filter(taskArray=> task != taskArray);
+              this.updateLocalStorage();
             }
           }
         },
@@ -157,7 +159,7 @@ export class HomePage {
 
     await alert.present();
 
-    this.updateLocalStorage();
+    //this.updateLocalStorage();
   }
 
 }
